@@ -1,6 +1,6 @@
 ## Git
     git init  // 初始化仓库
-    git clone git@github.com:xiannaipaofu/JavaScript.git  // 克隆远程仓库
+    git clone git@github.com:weiwenhuaming411/MyNotes.git  // 克隆远程仓库
 
     # 个人信息配置: 
         git config --list  // 显示当前git配置信息
@@ -10,7 +10,7 @@
             id_rsa.pub
 
     # 连接仓库
-        git remote add origin git@github.com:weiwenhuaming0411/MyNode.git
+        git remote add origin git@github.com:weiwenhuaming411/MyNotes.git
                             
           // 配置远程连接为origin
         git remote -v  查看远程连接
@@ -34,7 +34,7 @@
     
     # 开发操作
         git status  // 查看状态
-        git add Files  // 跟踪文件
+        git add .  // 跟踪所有文件
         git commit -m "first commit"  // 提交
         git push origin main  // 上传
 
@@ -72,6 +72,10 @@
         git 开启代理
             git config --global http.proxy http://127.0.0.1:41091
             git config --global https.proxy http://127.0.0.1:41091
+
+        查看代理：
+            git config --global --get http.proxy
+            git config --global --get https.proxy
 
         git 取消代理
             git config --global --unset http.proxy
