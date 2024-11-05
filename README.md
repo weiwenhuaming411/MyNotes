@@ -1,1 +1,1 @@
-"强者从不抱怨环境！"
+"patience is key in life。"
