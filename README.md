@@ -1,1 +1,1 @@
-"patience is key in life。"
+"Patience is key in life。"
