@@ -4,7 +4,7 @@
 ## VSCode配置:
         Explorer: Compact Folders  // 控制文件夹是否紧凑显示
         Workbench › Editor: Enable Preview  // 把替换窗口设置为打开新窗口
-
+        Workbench: External Browser  // 配置浏览器
     ## 快速生成代码片段
         文件→首选项→配置用户代码片段
             {
@@ -62,10 +62,6 @@
 
 
 <!-- 样式 -->
-## 样式
-### Easy LESS
-    less文件转css
-
 ### Live Sass Compiler
     sass转css
         扩展设置: 配置sass

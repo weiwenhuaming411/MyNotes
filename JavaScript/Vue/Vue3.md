@@ -1,4 +1,4 @@
-## 基本流程
+## 安装流程
     vue3(vite):
         npm create vue@latest  // 通过vite创建Vue3项目
         npm i  // 安装项目依赖
@@ -6,15 +6,6 @@
         npm run build  // 项目打包
 
     Vue.js devtools 6.2.1  // Chrome安装扩展程序
-
-## 生命周期
-    beforeCreate()、created()  // 创建,setup代替
-    onBeforeMount(()=>{})  // 真实DOM挂载之前（虚拟DOM完成）
-    onMounted(()=>{})  // 挂载完毕(虚拟DOM替换成真实DOM)
-    onBeforeUpdate(()=>{})  // 更新数据：更新之前（页面尚未和数据保持同步）  
-    onUpdated(()=>{})  // 更新数据：更新之后（页面和数据保持同步）
-    onBeforUnmounted(()=>{})  // 卸载之前
-    onUnmouted(()=>{})  // 卸载之后
 
 ## Vue组件间通信方式
 
@@ -146,6 +137,17 @@
         components: {},
         setup(){}
     }
+
+    <!-- 生命周期 -->
+    beforeCreate()、created()  // 创建,setup代替
+    onBeforeMount(()=>{})  // 真实DOM挂载之前（虚拟DOM完成）
+    onMounted(()=>{})  // 挂载完毕(虚拟DOM替换成真实DOM)
+    onBeforeUpdate(()=>{})  // 更新数据：更新之前（页面尚未和数据保持同步）  
+    onUpdated(()=>{})  // 更新数据：更新之后（页面和数据保持同步）
+    onBeforUnmounted(()=>{})  // 卸载之前
+    onUnmouted(()=>{})  // 卸载之后
+
+    this.$nextTick(()=>{})  // 模板下一次更新后
 
 ### setup()/<script lang='ts' setup></script>
     注意: 

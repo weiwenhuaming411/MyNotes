@@ -1,34 +1,21 @@
 ## Node.js
-    ## node全局变量
+    <!-- node全局变量 -->
         process.memoryUsage()  // 获取代码运行内存使用量  rss代表字节/1024/1024 = MB
-
-        __dirname  // 当前目录绝对路径
-            (__dirname + '/text.js')
+        __dirname  // 当前目录绝对路径,(__dirname + '/text.js')
         __filename  // 当前文件的绝对路径
 
-
 ## npm常用配置
-        -v  查看版本号
-        -g  全局安装
         --save/-s  默认值,生产环境依赖  依赖写入package.json → dependencies
         --save-dev/-D  开发环境依赖  依赖写入package.json → devDependencies
-
-    ## pnpm(高性能的npm，优化了npm和yarn的潜在bug)
-        npm i -g pnpm
-        
-    ## 项目
-        npm run serve/npm start  // 启动
-        npm run build  // 打包
-        npm run lint  // 检查修复
 
     ## 常用指令
         npm init -y  // 初始化package.json
         npm install  // 下载package.json依赖
+
         npm i <name>@versions  // 下载包以及指定包版本
         npm uninstall|remove|rm|r|un <name>  // 删除
         npm update|up <name> --save  // 更新包,注: save为false.
 
-    
         npm ls  // 查看所有已安装包
         npm list -g  // 查询全局包
         npm root -g  // 查看全局安装包位置
@@ -36,19 +23,30 @@
         npm view <name> versions  // 查看包的所有版本
         npm cache clean --force  // 清除缓存
 
-    ## 切换镜像
+    <!-- 项目 -->
+        npm run serve/npm start  // 启动
+        npm run build  // 打包
+        npm run lint  // 检查修复
+
+<!-- 
+    pnpm(高性能的npm，优化了npm和yarn的潜在bug)
+        npm i -g pnpm
+ -->
+
+<!-- 
+    切换镜像
         npm i cnpm --registry=https://registry.npmmirror.com -g   // 淘宝镜像
-        npm i nrm -g
+        npm i nrm -g  // 安装nrm
         npm i nrm open@8.4.2 -g
         nrm use cnpm  // 切换镜像源
-        nrm ls  // 查看正在使用的镜像源
+        nrm ls  // 查看所有的镜像源
 
         npm get registry  // 查看当下镜像源
         npm config list  // 查看当下镜像源npm
 
         npm config set registry https://registry.npmmirror.com/  // 设置npm命令服务器源
         npm config get registry  // 获取npm命令服务器源
-
+ -->
 
 ## file system文件系统
     const fs = require('fs');  // 导入模块
@@ -150,7 +148,7 @@
 
 
 ## express
-    token - 识别用户身份
+    #token - 识别用户身份
         npm i jsonwebtoken
 
         const jwt = require('jsonwebtoken')
@@ -163,14 +161,14 @@
         // 校验token
         jwt.verify(token, 'atguigu', (err, data)=>{})
 
-    cookie-parser - 解析Cookie工具
+    #cookie-parser - 解析Cookie工具
         npm i cookie-parser
 
         const cookieParser = require('cookie-parser');
         app.use(cookieParser())
         res.cookies
 
-    express-session - 生成sid唯一标识
+    #express-session - 生成sid唯一标识
         npm i express-session connect-mongo
 
         const session = require('express-session')
@@ -192,7 +190,7 @@
         req.session.username = 'admin'  // 设置用户信息
         req.session.destroy(()=>{})  // 销毁session
 
-    http-proxy-middleware - 代理服务器中间件
+    #http-proxy-middleware - 代理服务器中间件
         $ npm i http-proxy-middleware 
         
         const { createProxyMiddleware } = require('http-proxy-middleware');
@@ -217,8 +215,8 @@
         const app = express()
 
         // 解析数据格式
-        app.ues(bodyParser.json())
-        app.ues(bodyParser.urlencoded({ extended: false }))
+        app.use(bodyParser.json())  // npm i body-parser
+        app.use(bodyParser.urlencoded({ extended: false }))
 
         function recordMiddleware(req, res, next){ next()}  // 全局中间件
         app.use(recordMiddleware)  // 使用中间件
@@ -285,9 +283,6 @@
     ## 静态资源中间件
         app.use(express.static(__dirname + '/public'))  // 文件夹目录
 
-    ## 防盗链
-        携带域名请求头,实现防盗效果
-
     ## 路由模块化
         const express = require('express')
         const router = express.Router()
@@ -339,52 +334,10 @@
             })
         })
         
-        
-## linux
-    linux:  /根目录
-
-    指令:   
-        pwd  返回当前路径的绝对路径
-        cd xx       跳转目录
-        ls          查看当前目录所有文件、-R列出子目录中的所有文件|-a列出隐藏文件|-al
-        cat file  查看文件内容
-        mkdir xxx   创建文件夹
-        rmdir name  删除文件夹
-        touch name.txt  新建文件
-
-        clear  清屏
-
-    vim操作
-        进入编辑器 vi/vim，vim三种模式：命令模式、插入模式、编辑模式。使用ESC或i或：来切换模式。
-
-        进入编辑模式插入 i
-        退出编辑模式 esc
-        保存:后面输入w
-        退出:后面输入q
-        不保存退出:后面输入q!
-        显示行号 set number
-        查找关键字 /xxxx 按n跳到下一个，shift+n上一个
-        复制光标所在行，并粘贴 yyp
-        h(左移一个字符←)、j(下一行↓)、k(上一行↑)、l(右移一个字符→)
-
-
-## windows
-    指令
-        .  当前目录
-        ..  上一级目录
-        D:  切换盘符
-        dir  查询当下目录  /s盘点目录下所有文件  color 02  修改颜色
-        cd  切换目录
-
-    /r/n  换行
-
-    cmd ipconfig  // 当下ip地址
-
 <!-- 
 
 ## os操作系统模块
     const os = require('os')
-
     cosnt threads = os.cpu().length;  // 获取cpu核数
 
 ### nvm  nodejs版本管理工具

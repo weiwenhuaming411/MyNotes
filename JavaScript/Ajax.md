@@ -28,7 +28,7 @@
                     </body>
                 </html>
 
-    ## 原生http模块
+    <!-- 原生http模块 -->
         const http = require('http');  // 导入
         const server = http.createServer((req, res) => {res.end('')  //设置响应体})  // 创建服务对象
         server.listen(8000, ()=>{})  // 监听端口，启动服务
@@ -39,11 +39,6 @@
         request.on('end', ()=>{console.log(body), res.end('')})
 
 ## ajax
-    ## 接口测试工具
-        apipost
-        apifox
-        postman
-
     ## 发送AJAX
         xhr = new XMLHttpRequest();  // 创建对象
         xhr.open('get', 'url');  //设置请求方法和url
@@ -67,9 +62,9 @@
             3.使用创建标签、设置src、设置回调、插入标签
 
         # CORS跨域资源共享
-            Access-Control-Allow-Origin  //允许跨域
-            Access-Control-Allow-Headers  //允许请求头自定义
-            Access-Control-Allow-Method  //配置请求类型
+            Access-Control-Allow-Origin  // 允许跨域
+            Access-Control-Allow-Headers  // 允许请求头自定义
+            Access-Control-Allow-Method  // 配置请求类型
 
         # 代理服务器
             devServer:{
@@ -116,3 +111,8 @@
         }, (error) => {
             return Promise.reject(new Error('faile'));
         });
+
+## <!-- 接口测试工具 -->
+        apipost
+        apifox
+        postman
