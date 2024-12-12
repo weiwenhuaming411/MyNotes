@@ -1,6 +1,41 @@
 ## TypeScript
     npm i -g typescript
 
+<!-- 
+    vue3:
+        interface接口
+            src/types/PersonInter.ts:
+                export interface PersonInter{
+                    id: string
+                    name: string,
+                    age?: number  // ?可选选项
+                }
+
+        引入:
+            import {type PersonInter} from 'path'
+            let person:PersonInter = {id:'0',name:'杨超越',age:18}
+ -->
+    <!-- interface定义接口 -->
+            interface PersonInter{}  // 定义
+
+    <!-- <>泛型 -->
+        let person:Array<PersonInter> = []
+
+
+        
+    
+        
+
+
+
+
+
+
+
+
+
+
+
     类型断言
         变量 as 类型
         <类型>变量
@@ -13,11 +48,7 @@
         function  //(形参：类型, ...) => 返回值类型
         array  //数值类型[]、Array<类型>
         any  //任意类型
-        unknown  //安全的任意类型
-        void  //函数空值
-        never  //函数没有值
-        tuple  //[类型, 类型],固定长度数组
-        enum  //枚举  enum 属性{属性名, 属性名}
+        
         类型别名  type 属性名 = 类型;
  
     面向对象
@@ -31,36 +62,10 @@
             abstract class Promise  //抽象类，不能用来被创建实例
             abstract demo();  //抽象方法，没有方法体，子类必须重写
 
-        interface定义接口
-            interface myInter{}  // 定义
+        <!-- interface定义接口 -->
+            interface PersonInter{}  // 定义
 
-            class myClass implements myInter{} //实现接口
-
-    泛型
-        定义泛型
-            function fn<T>(a: T): T{
-
-            }
-            fn<number>(10);  //指定泛型类型
-
-    vue3:
-        接口:
-        types/PersonInter.ts:
-            export interface PersonInter(){
-                id: string
-                name: string,
-                age?: number  // ?可选选项
-            }
-
-            // 自定义类型
-            // export type Persons = Array<PersonInter>  // PersonInter[]
-
-        import {type PersonInter, type Persons} from 'path'
-        let person:PersonInter = {id:'0',name:'杨超越',age:18}
-        // let person:Persons = []
-
-        :泛型<>
-        let person:Array<PersonInter> = []
+            class myClass implements PersonInter{} //实现接口
 
 ## tsconfig.json
     编译 tsc -w

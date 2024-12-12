@@ -1,6 +1,3 @@
-## less-loader
-    npm i less-loader
-
 ## animate.css 动画库
     npm i anitate.css
     import 'anitate.css'

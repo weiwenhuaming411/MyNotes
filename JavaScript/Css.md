@@ -135,7 +135,7 @@
         :invalid  用于匹配输入值为非法的元素
  -->
 
-### css2属性
+## css2属性
 
 #### <!-- 常用属性 -->√
         width  // 设置元素的宽度  => max-width/min-width
@@ -381,7 +381,7 @@
             help  此光标指示可用的帮助（通常是一个问号或一个气球）
             progress 此光标指示正在加载
 
-### css3√
+## css3√
 
 #### <!-- 阴影 -->√
         text-shadow: h-shadow v-shadow blur color;  // 文本阴影

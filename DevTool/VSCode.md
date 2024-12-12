@@ -5,20 +5,21 @@
         Explorer: Compact Folders  // 控制文件夹是否紧凑显示
         Workbench › Editor: Enable Preview  // 把替换窗口设置为打开新窗口
         Workbench: External Browser  // 配置浏览器
-    ## 快速生成代码片段
+
+    <!-- 代码片段 -->
         文件→首选项→配置用户代码片段
             {
                 "Print to console": {
                     "scope": "",
                     "prefix": "vue3",
                     "body": [
-                        "<script setup lang='ts'>",
-                        "",
-                        "</script>",
-                        "",
                         "<template>",
                         "",
                         "</template>",
+                        "",
+                        "<script setup lang='ts'>",
+                        "",
+                        "</script>",
                         "",
                         "<style scoped>",
                         "",
@@ -46,23 +47,11 @@
 
 
 <!-- Vue -->
-## Vue
-### Vetur
-    vue格式化工具
-
-### Vue 3 Snippets
-    快速生成vue模板
-
-### Vue language Features
-    代码高亮
-
-### TypeScript Vue Plugin(Volar)
-    ref函数自动填充value:
-        vscode设置--扩展--volar--dot value
+## Vue-Official
 
 
 <!-- 样式 -->
-### Live Sass Compiler
+## Live Sass Compiler
     sass转css
         扩展设置: 配置sass
 
@@ -73,8 +62,6 @@
         nvm自动切换对应版本
         .nvmrc:
             v18.18.0
-
-    ## Codelf(变量命名神器)
 
     ## Vscode-element-helper
         ElementUI组件标签提示

@@ -99,23 +99,23 @@
         JSON.stringify()  // 将字符串转换成JSON
 
 #### 全局属性√
-        属性:
-            constructor  // 返回创建该属性的构造函数
-            prototype  // 允许您向对象添加属性和方法
-            length  // 对象长度
-            data-name='value'
-                element.dataset  // 获取自定义属性合集
-                element.dataset.name  // 读取自定义属性
-        方法:
-            instanceof  // 判断一个属性是否存在一个对象身上(引用类型)
-            typeof()  // 检测类型(值类型)
-            parseFloat()  // 将字符串转换成浮点数
-            parseInt()  // 将字符串转换成整型数字
+    属性:
+        constructor  // 返回创建该属性的构造函数
+        prototype  // 允许您向对象添加属性和方法
+        length  // 对象长度
+        data-name='value'
+            element.dataset  // 获取自定义属性合集
+            element.dataset.name  // 读取自定义属性
+    方法:
+        instanceof  // 判断一个属性是否存在一个对象身上(引用类型)
+        typeof()  // 检测类型(值类型)
+        parseFloat()  // 将字符串转换成浮点数
+        parseInt()  // 将字符串转换成整型数字
 
-            encodeURI()  把字符串编码为 URI
-            decodeURI()  解码某个编码的 URI
+        encodeURI()  把字符串编码为 URI
+        decodeURI()  解码某个编码的 URI
 
-            eval()  计算 JavaScript 字符串，并把它作为脚本代码来执行
+        eval()  计算 JavaScript 字符串，并把它作为脚本代码来执行
             
 #### Array数组√
         <!-- 添加 -->
@@ -692,6 +692,12 @@
         $ 结束标记
 
 ## Date日期
+    let Time = new Date()  // 创建时间对象
+
+    toLocaleString()  // 根据本地时间格式，把 Date 对象转换为字符串。2023/5/31 14:11:53
+    toLocaleDateString()  // 根据本地时间格式，把 Date 对象的日期部分转换为字符串。2023/5/31
+    toLocaleTimeString()  // 根据本地时间格式，把 Date 对象的时间部分转换为字符串。14:12:12
+
     get/set/getUTC/setUTC
     getTime()	返回 1970 年 1 月 1 日至今的毫秒数。
     getFullYear()   返回年份
@@ -701,22 +707,21 @@
     getMinutes()    返回分钟
     getSeconds()	返回秒数
     getMilliseconds()   返回毫秒
-
-    parse()	返回1970年1月1日午夜到指定日期（字符串）的毫秒数。
     getDay()        一周中的某一天
-    UTC()	根据世界时返回 1970 年 1 月 1 日 到指定日期的毫秒数。
-    getUTCDay()	根据世界时从 Date 对象返回周中的一天 (0 ~ 6)。
+
+    UTC()	根据世界时返回 1970 年 1 月 1 日 到指定日期的毫秒数
+    toUTCString()	根据世界时，把 Date 对象转换为字符串
+    parse()	返回1970年1月1日午夜到指定日期（字符串）的毫秒数。
 
     toJSON()	以 JSON 数据格式返回日期字符串。
     toISOString()	使用 ISO 标准返回字符串的日期格式。
-    toDateString()	把 Date 对象的日期部分转换为字符串。
-    toLocaleString()	根据本地时间格式，把 Date 对象转换为字符串。2023/5/31 14:11:53
-    toLocaleDateString()	根据本地时间格式，把 Date 对象的日期部分转换为字符串。2023/5/31
-    toLocaleTimeString()	根据本地时间格式，把 Date 对象的时间部分转换为字符串。14:12:12
     
+
     toString()	转换为字符串。Wed May 31 2023 14:12:31 GMT+0800 (中国标准时间)
+    toDateString()	把 Date 对象的日期部分转换为字符串。
     toTimeString()	把 Date 对象的时间部分转换为字符串。14:12:57 GMT+0800 (中国标准时间)
-    toUTCString()	根据世界时，把 Date 对象转换为字符串。  
+
+    
         
 ## 
 <!-- 

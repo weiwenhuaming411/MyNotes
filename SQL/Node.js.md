@@ -28,6 +28,12 @@
         npm run build  // 打包
         npm run lint  // 检查修复
 
+    <!-- 设置代理 -->
+        npm config set proxy=http://127.0.0.1:80  // 设置代理
+        npm config set proxy=https://127.0.0.1:80
+
+        npm config delete proxy  // 取消代理
+        npm config delete https-proxy
 <!-- 
     pnpm(高性能的npm，优化了npm和yarn的潜在bug)
         npm i -g pnpm
@@ -35,17 +41,15 @@
 
 <!-- 
     切换镜像
-        npm i cnpm --registry=https://registry.npmmirror.com -g   // 淘宝镜像
-        npm i nrm -g  // 安装nrm
-        npm i nrm open@8.4.2 -g
+        npm i nrm -g  // 安装nrm(npm i nrm open@8.4.2 -g)
         nrm use cnpm  // 切换镜像源
+
         nrm ls  // 查看所有的镜像源
-
         npm get registry  // 查看当下镜像源
-        npm config list  // 查看当下镜像源npm
+        npm config list  // 查看所有镜像源
 
-        npm config set registry https://registry.npmmirror.com/  // 设置npm命令服务器源
         npm config get registry  // 获取npm命令服务器源
+        npm config set registry https://registry.npmmirror.com/  // 设置npm命令服务器源
  -->
 
 ## file system文件系统
