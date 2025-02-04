@@ -14,14 +14,16 @@
                     "prefix": "vue3",
                     "body": [
                         "<template>",
+                        "  <div>",
                         "",
+                        "  </div>",
                         "</template>",
                         "",
                         "<script setup lang='ts'>",
                         "",
                         "</script>",
                         "",
-                        "<style scoped>",
+                        "<style scoped lang='scss'>",
                         "",
                         "</style>"
                     ],
@@ -45,29 +47,13 @@
 ## ESLint
     js语法检测高亮
 
-
 <!-- Vue -->
 ## Vue-Official
 
-
-<!-- 样式 -->
-## Live Sass Compiler
-    sass转css
-        扩展设置: 配置sass
-
+## Element UI Snippets
+    标签补全
 
 <!-- 扩展 -->
 ## 扩展
-    ## vsc-nvm
-        nvm自动切换对应版本
-        .nvmrc:
-            v18.18.0
-
-    ## Vscode-element-helper
-        ElementUI组件标签提示
-
-    ## Prettier - Code formatter
-        代码格式化
-
     ## px to rem & rpx & vw (cssrem)
         屏幕适配

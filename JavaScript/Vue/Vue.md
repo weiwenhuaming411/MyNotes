@@ -1,13 +1,17 @@
 ## 安装流程 √
-    npm create vue@latest  // 通过vite创建Vue3项目
-    npm i  // 安装项目依赖
-    npm run dev
-    npm run build  // 项目打包
+    pnpm create vue@latest  // 通过vite创建Vue3项目
+    pnpm i  // 安装项目依赖
+    pnpm dev --open
+    pnpm build  // 项目打包
 
     Vue.js devtools  // Chrome安装扩展程序
 
+    pnpm i reset-scss  // 安装清除默认样式包
+        import '../node_modules/reset-scss/reset.scss'  // 引入清除默认样式文件
+    pnpm i sass  // 安装sass
+
 ## API
-    <component :is="Count"></component>  // 组件
+    app.component('Home', Home)  // 注册全局组件
 
 <!-- v-bind(单向) -->
     v-bind:data="data"  // 简写(:data='data')
@@ -158,10 +162,10 @@
     $router： 整个应用只有一个$router（路由器），进行编程式导航进行路由跳转【push|replace】
 
 <!-- 基本配置 -->
-    npm i vue-router
+    npm i vue-router  // 安装路由
     src/router/index.ts:
         import {createRouter, createWebHistory} from 'vue-router'
-        improt Home from 'path'  // 引入路由组件
+        import Home from 'path'  // 引入路由组件
         const router = createRouter({
             history: createWebHistory(),  // 指定路由器的工作模式,createWebHashHistory()  // 带#号
             routes: [
@@ -264,7 +268,7 @@
     }
 
 ## pinia数据集中式管理(全能) √
-    npm i pinia  // 安装pinia
+    pnpm i pinia  // 安装pinia
 
     main.js:
         import {createPinia} from 'pinia'  // 引入
@@ -431,51 +435,20 @@
         <input type="text" :value='data' @input="data=$event.target.value">  // v-model底层原理
 -->
 
-## 数据代理原理
-    原生js Object.defineProperty()、Reflect.definePropety():
-        Object.defineProperty(obj, 'name'){
-            value: '杨超越',  // 设置初始值,默认值undefine
-            enumerable: true,  // 控制属性是否可以枚举，默认值false
-            writable: true,  // 控制属性是否可以修改，默认值false
-            configurable: true,  // 控制属性是否可以被删除，默认值false
-            get(){},  // 读取时触发
-            set(value){}  // 修改时触发
-        }  // 没有返回值,不方便捕获错误
 
-        Reflect.definePropety(obj, 'name', {})  // 反射对象,有返回值,方便捕获错误
 
-    es6 Proxy(代理): 
-        const p = new Proxy(person, {
-            get(target, propName){return Reflect.get(target, propName)},  // 读取属性时触发
-            set(target, propName, value){return Reflect.set(target, propName, value)},  // 添加、修改属性时触发
-            deleteProperty(target, propName){return Reflect.deleteProperty(target, propName, value)}  // 删除属性时触发
-        })
-
-    通过Proxy(代理): 拦截对象中任意属性的变化。
-    通过Reflect(反射)：对被代理对象属性进行操作。
-
-## vue.config.js
-    配置代理服务器：
-        devServer:{
-            proxy:{
-                '/api':{
-                    target:'http://127.0.0.1:8080',
-                    pathRewrite:{'^/api':''},  // 正则匹配重写路径
-                    ws:true,  // 用于支持websocket
-                    changeOrigin:true  // 用于控制请求头中的host值
-                }
+## vite.config.js(配置代理服务器)
+    server: {
+        proxy: {
+            '/api': {
+                target: 'http://jsonplaceholder.typicode.com',
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/api/, '')  // 重写路径
             }
         }
-
-## 项目应用
-    菜单联动、轮播图、分页器、放大镜、面包屑、登录、注册、日历
+    }
 
 ## 样式
-    深度选择器
-        原生CSS  >>> .class
-        less  /deep/ .class
-        scss  ::v-deep .class
-
     封装的过渡与动画
         元素进入的样式
         Vue3: .v-enter-from
@@ -494,3 +467,11 @@
             </transition-group>
 
         备注：若有多个元素需要过渡，则需要使用：<transition-group>,且每个元素都要指定key值
+
+## 项目应用
+    节流与防抖
+    轮播图、
+    分页器、
+    面包屑、
+
+    菜单联动、放大镜、登录、注册、日历

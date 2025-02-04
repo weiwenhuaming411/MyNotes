@@ -1,12 +1,40 @@
-### Vite
-    npm create vue@latest  // 通过vite创建Vue3项目
-    npm i  // 安装项目依赖
-
-    npm run dev
-
 ## Vite(pnpm)
     pnpm create vite  // 项目初始化
     pnpm i  // 下载依赖
+    pnpm run dev --open  // 运行项目并打开
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     ### eslint(保证代码质量)
         pnpm i eslint -D  // 下载语法检测工具

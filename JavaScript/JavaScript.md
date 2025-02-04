@@ -1,334 +1,193 @@
-## 书写规范
-    const定义常量、let定义变量
-        let mySchool = "我的学校"
-
-    class,使用小写字母和中划线
-        class="my-school"
-
-    ID,大写字母和下划线
-        <view id="MY_SCHOOL"></view>
-
-    组件命名,首字母大写,及驼峰命名规则
-        例: MyPay.vue
-
-    函数命名命名规范
-        驼峰式命名，统一使用动词或者动词+名词形式
-        请求数据方法，以data结尾
-        methods: {
-            jumpPage(){},
-            openCarInfoDialog(){},
-            getListData(){},
-            postFormData(){}
-        }
-        has: 判断是否含有某个值
-        is: 判断是否为某个值
-        get: 获取某个值
-        set: 设置某个值
-        update: 更新某个值
-        on: 触发事件（click/change 等 dom 事件或者emit派发事件）
-        render: 渲染页面
-        handle: 执行某一个事件（如果不清楚用什么动词前缀，可以使用 handle）
-        还有很多类似的动作，例如：add/delete/put/select/change/move/remove/to等
-
-        例外情况:
-            作用域不大临时变量可以简写，比如：str，num，bol，obj，fun，arr
-            循环变量可以简写，比如：i，j，k 等
-
-## javaScript API√
-    "use strict";  严格模式
-    debugger;  断点、调试代码
+## JavaScript 原理
+    "use strict";  // 严格模式
+    debugger;  // 断点、调试代码
     //#region  // 注释折叠
 
-    <!-- 数据类型 -->
-        值类型: Number/String/Boolean/Null/Undefined/Symblo
-        引用类型: Object/Array/Function/RegExp/Date
-        
-        new Boolean():
-            值为0、-0、null、""、false、undefined、NaN时为false
+<!-- 数据类型 -->
+    值类型: 
+        object
+        number
+        string
+        boolean  // 值为0、-0、null、""、false、undefined、NaN时为false
+        null
+        undefined
+        symblo
 
-    <!-- Error错误处理 -->
-        try(){}catch(err){}
+    引用类型: 
+        Function
+        Array
 
-        异常处理：
-            ReferencError  非法引用
-            TypeError  类型错误
-            SyntaxError  语法错误
-            URIError  encodeURI() 函数产生的错误
-            RangeError  数值超出规定的范围
-            SyntaxError  eval()函数产生的错误
+        String
+        Number
+        Boolean
+        Object
+        Error
+        RegExp
+        Date  // new Date()
 
-            err.name  错误类型
-            err.message  错误信息
+<!-- 运算符 -->
+    void foo()  // 计算一个表达式,但不返回值(undefined)
+    + - ++ -- * / %
+    = += -= *= /= %=
+    == === != !== > < >= <=
+    !
+    ||  // 返回第一个为true的值,否则返回最后一个值
+    &&  // 返回第一个为false的值,否则返回最后一个值
 
-    <!-- this指向 -->
-        myFun.call(obj, 'xx', 'xx')
-        myFun.apply(obj, ['xx', 'xx'])
-        myFun.bind(obj, 'xx', 'xx')()  //有返回值且是个函数
+<!-- 属性 -->
+    length  // 对象长度
+    data-name='value'
+        element.dataset  // 获取自定义属性合集
+        element.dataset.name  // 读取自定义属性
+<!-- 方法 -->
+    typeof()  // 检测值类型
+    parseInt()  // 将字符串转换成整型数字
+    parseFloat()  // 将字符串转换成浮点数
 
-    <!-- 条件语句 -->
-        if(){}else{}
+    encodeURI()  把字符串编码为 URI
+    decodeURI()  解码某个编码的 URI
 
-        不同的结果执行不同的代码
-            switch(item){
-                case 1: xxx;
-                break;
-                case 2: sss;
-                default: ccc;
-            }
+<!-- Error错误处理 -->
+    try(){
+        throw ;  // 抛出异常
+    }catch(err){
 
-    <!-- 循环 -->
-        for(let i=0; i<number; i++){}
-        for(item in obj){}
+    }finally{}  // finally总会被调用
 
-        while(){}
-        do{}while()
+        err.name  错误类型
+        err.message  错误信息
 
-        break  // 跳出循环
-        continue  // 跳过本次循环
+<!-- 判断/循环 -->
+    for(let i=0; i<number; i++){}  // 循环
+    for(key in obj){}  // 遍历对象可枚举属性(含prototype)
+    for(value of arr){}  // 遍历数组
 
-    <!-- 定时器 -->
-        const T = setTimeout(() => {}，1000)  执行一次
-        const T = setInterval(() => {}, 1000)  循环执行
-        
-        关闭定时器/重启
-            clearInterval(T);
-            clearTimeout(T);
+    switch(true){  // 不同的结果执行不同的代码
+        case 1: xxx;
+        break;
+        case 2: xxx;
+        break;
+        default: ccc;  // 都不匹配则触发
+    }
 
-    <!-- JSON -->
-        JSON.parse(data)  // 将JSON转换成字符串
-        JSON.stringify()  // 将字符串转换成JSON
+    if(){}else{}
+    
+    while(i<5){console.log(i++)}  // 条件为真时循环执行代码块
+    do{}while()  // 条件为真前先执行一次代码块
 
-#### 全局属性√
-    属性:
-        constructor  // 返回创建该属性的构造函数
-        prototype  // 允许您向对象添加属性和方法
-        length  // 对象长度
-        data-name='value'
-            element.dataset  // 获取自定义属性合集
-            element.dataset.name  // 读取自定义属性
-    方法:
-        instanceof  // 判断一个属性是否存在一个对象身上(引用类型)
-        typeof()  // 检测类型(值类型)
-        parseFloat()  // 将字符串转换成浮点数
-        parseInt()  // 将字符串转换成整型数字
+    break;  // 终止循环(for/switch)
+    continue  // 跳过本次循环(for)
 
-        encodeURI()  把字符串编码为 URI
-        decodeURI()  解码某个编码的 URI
+<!-- Function -->
+    function foo(a, ...rest){  // rest参数整合(剩余未接收实参)
+        console.log(rest)  // [2, 3]
+    }
+    foo(1, 2, 3)
 
-        eval()  计算 JavaScript 字符串，并把它作为脚本代码来执行
-            
-#### Array数组√
-        <!-- 添加 -->
-        array.unshift(1)  // 向数组开头添加元素，并返回新的长度(修改原数组)
-        array.push(1)  // 向数组末尾添加元素，并返回新的长度(改变原数组)
+<!-- this指向 -->
+    myFn.call(obj, 'xx', 'xx')  // 指向并传参
+    myFn.apply(obj, ['xx', 'xx'])
+    myFn.bind(obj, 'xx', 'xx')()  // 有返回值且是个函数
 
-        <!-- 删除 -->
-        array.shift()  // 删除并返回数组的第一个元素(改变原数组)
-        array.pop()  // 删除并返回数组的最后一个元素(改变原数组)
+<!-- 构造函数 -->
+    function Foo(){
+        this.name = ''
+    }
+    let f = new Foo()
 
-        <!-- 读取 -->
-        array.slice(start, end)  // 选取数组的一部分，并返回(不改变原数组)
-        array.at(index)  // 返回索引值的值(负数倒数)
+<!-- 定时器 -->
+    let T = setTimeout(() => {}, 1000)  执行一次
+    let T = setInterval(() => {}, 1000)  循环执行
+    
+    关闭定时器
+        clearInterval(T);
+        clearTimeout(T);
 
-        <!-- 修改 -->
-        array.reverse()  // 反转数组的元素顺序(改变原数组)
-        array.sort((a, b) => {return a-b;})	 // 对原数组的元素进行排序。默认升序
-        array.fill('', start, end)  // 使用一个值来替换数组(改变原数组)
-        array.splice(index, number, newItem)  // 删除并返回删除元素后添加新元素(改变原数组)
-        array.flat(2)  // 数组降维并返回，参数为深度(使用Infinity，可展开任意深度的嵌套数组)
-        array.flatMap(item => {})  将多维数组降维并遍历数组
-        
-        <!-- 检索 -->
-        array.indexOf()  // 搜索数组中的元素，并返回它的索引值,没找到则返回-1
-        array.lastIndexOf()  // 从后面搜索数组中的元素，并返回它的索引值,没找到则返回-1
-        array.includes()  // 判断一个数组是否包含一个指定的值true/false
+<!-- JSON -->
+    JSON.parse(data)  // 将JSON转换成字符串
+    JSON.stringify()  // 将字符串转换成JSON
 
-        <!-- 拼接 -->
-        array.join('')  // 使用字符串拼接数组，并返回拼接字符串
-        array.concat(arr)  // 连接两个或更多的数组/字符串，并返回结果
-        
-        <!-- 遍历 -->
-        array.forEach((item, index) => {})  // 遍历数组
-        array.map((item) => {return})  // 遍历数组,并返回新数组
+<!-- 数据代理原理 -->
+    Object.defineProperty():
+        Object.defineProperty(obj, 'key', {
+            value: '',  // 设置初始值,默认值undefine
+            enumerable: true,  // 控制属性是否可以枚举，默认值false
+            writable: true,  // 控制属性是否可以修改，默认值false
+            configurable: true,  // 控制属性是否可以被删除或配置，默认值false
+            get(){},  // 读取时触发
+            set(value){}  // 修改时触发
+        })  // 没有返回值,不方便捕获错误
 
-        <!-- 过滤 -->
-        array.filter((item) => {})  // 过滤器,返回所有匹配的值，并生成新的数组
+    Reflect.definePropety():
+        Reflect.definePropety(obj, 'key', {})  // 反射对象,有返回值,方便捕获错误
 
-        <!-- 判断 -->
-        array.every((item) => {})  // 遍历数组是否符合条件，全符合为true,否则false
-        array.some((item) => {})  // 遍历数组是否含有符合条件，只要有一项满足条件，就会返回true
-        array.find((item) => {})  // 返回第一个所匹配的值
-        array.findIndex(item => {})  // 返回第一个所匹配的值的索引
-
-        <!-- 累加器 -->
-        array.reduce((total, item, index, arr)=>{}, value)  累加器（从左到右）
-            total  必需。初始值, 或者计算结束后的返回值。
-            item  必需。当前元素
-            index  可选。当前元素的索引
-            arr  可选。当前元素所属的数组对象
-            value  可选。传递给函数的初始值
-        
-        <!-- Array -->
-        Array.isArray()  // 判断是否为数组
-        Array.from(arr, callback)  // 通过给定的对象中(伪数组)创建一个数组(必须要有length属性)
-        Array.of(item, item2...)  // 将一组值转换为数组
-
-<!-- 
-    array.copyWithin(index, start, end)  // 从指定位置拷贝元素到数组的另一个指定位置中(覆盖原数组)
-        index  必需。复制到指定目标索引位置。
-        start  可选。元素复制的起始位置。
-        end  可选。停止复制的索引位置 (默认为 array.length)。如果为负值，表示倒数。
-
-    array.entries()  // 返回数组的可遍历对象
-        let E = array.entries()
-        console.log(E.next().value)  // [index, item]
-    array.keys()  // 返回数组的可迭代对象，包含原始数组的键(key)
-        let K = array.keys()
-        console.log(K.next().value)  // 0(索引值)
- -->
-
-#### Number数字√
-        Number()  // 将字符串转换为数字
-        Number.isFinite()  // 判断传递的参数是否为有限数字
-        Number.isInteger()  // 判断传递的参数是否为整数
-        Number.isNaN()  // 判断传递的参数是否为NaN
-        
-        number.toFixed(x)  // 保留几位小数(四舍五入)
-        number.toPrecision(x)  // 返回一个指定长度的数字(四舍五入)
-
-#### Math数学√
-        Math.random()  // 1~0之间的随机数
-        Math.abs(x)  // 返回 x 的绝对值
-        Math.round()  // 四舍五入
-        Math.ceil()  // 对数进行上舍入(5.12=6)
-        Math.floor()  // 对数进行下舍入(1.59=1)
-        Math.max(...arr)  // 返回最高值
-        Math.min(...arr)  // 返回最低值
-        Math.pow(x, y)  // 返回x的y次幂
-        Math.trunc()  // 去掉小数部分
-        Math.sign()  // 判断为正数1 负数-1 还是零0
-        Math.sqrt(x)  // 返回数的平方根
-
-        Math.PI  // 圆周率3.141592653589793
-
-#### String字符串√
-        string.split('')  把字符串分割为字符串数组
-        .toString()	// 转换为字符串(或转换16、8、2进制)
-        .trim()  // 去除首尾空白
-        .charAt(index)  // 返回在指定索引的字符
-        .toUpperCase()  // 把字符串转换为大写
-        .toLowerCase()  // 把字符串转换为小写
-        .search('')  // 查找相匹配的值,并返回索引值,没找到则返回-1(or正则)
-        .charCodeAt(index)  // 返回在指定索引值的字符的 Unicode 编码
-
-        String.fromCharCode()  // 将 Unicode 编码转为字符
-
-<!-- 
-        string.trimStart()  // 去除开头空白
-        string.trimEnd()  // 去除结尾空白
-        .repeat(num)  // 复制字符串指定次数，并将它们连接在一起返回
-        .replace('oldStr', 'newStr')  // 匹配字符串并替换(单个)
-        .replaceAll('oldStr', 'newStr')	// 匹配字符串并替换(所有)
-        .startsWith('')  // 查看字符串是否以指定的字符串开头
-        .endsWith('')  // 判断当前字符串是否是以指定的子字符串结尾的
-        .localeCompare()  用本地特定的顺序来比较两个字符串,完全匹配0 匹配1 不匹配-1
-
-        .substring(index, index)  // 提取字符串中两个指定的索引号之间的字符
-        match(reg)  正则表达式的匹配,返回匹配值
-        matchAll(reg)  批量匹配
- -->
-
-#### Object对象√
-        Object.is(a, b)  // 判断两个值是否相等,返回ture/false
-        Object.assign(obj, objItem)  // 合并对象(同属性会覆盖)
-        Object.setPrototypeOf(obj1, obj2)  // 给对象添加原型对象
-        Object.getPrototypeOf(obj1)  // 读取对象的原型对象
-
-<!-- 
-        Object.entries(obj)  // 返回对象可遍历属性[key, value]的数组
-        Object.fromEntries()  // 把[key, value]的数组转换成对象
-        Object.getOwnPropertyDescriptors(obj)  // 获取对象属性的描述对象
- -->
-
-## ES6
-    <!-- 属性名表达式 -->
-        const obj = {
-            ["he"+"llo"](){
-                return "Hi";
-            }
-        }
-        obj.hello();  //"Hi"
-
-    <!-- rest参数整合 -->
-        let data = function(...rest){
-            console.log(rest)  // [1, 2, 3]
-        }
-        data(1, 2, 3)
-
-    <!-- Set集合(数组去重) -->
-        let s = new Set(array);
-
-    <!-- Map集合(扩展键的范围) -->
-        let m = new Map();
-        let school = {name: '学校'}
-        m.set(school, 'xxx')  // 添加一个key为{name: '学校'},值为'xxx'的键值对
-
-    # import按需加载:
-        import("./js/count")
-        .then((res)=>{
-            console.log('模块加载成功', res)
-        })
-        .catch((err)=>{
-            console.log('模块加载失败', err)
+    Proxy(代理):  // 拦截对象中任意属性的变化
+        const p = new Proxy(obj, {
+            get(target, propName){return Reflect.get(target, propName)},  // 读取属性时触发
+            set(target, propName, value){return Reflect.set(target, propName, value)},  // 添加、修改属性时触发
+            deleteProperty(target, propName){return Reflect.deleteProperty(target, propName, value)}  // 删除属性时触发
         })
 
-    # Symblo类型
-        let sym = Symblo();  //函数
-        let sym = Symblo.for();  //函数对象
-        独一无二
-        不能运算
-        不能for...in循环,但是可以使用reflect.ownKeys来获取对象的所有键名
-        防止创建方法和对象本身的方法冲突
-            const game = {}
-            let sym = Symblo();
-            game[sym] = functiom(){}
-            game[sym]();
+<!-- calss 类 -->
+    calss Vehicle{
+        price = '30w'  // 公有属性
+        #liter = '180L'  // 私有属性，只能出现在类的内部(带#号属性无法访问)
+        static Hello(){}  // static静态方法，属于类，不属于构造对象(实例化前调用)
+
+        constructor(){  // 构造函数
+            this.type = '';
+        };
         
-        Symbol.prototype.description  获取symblo字符串描述
+        get getName(){}  // 属性被读取时触发、访问私有属性
+        set setName(value){}  // 属性被调用时触发
+    }
 
-    # calss 类
-        calss Promise{
-            name;  //公有属性
-            #age  //私有属性，只能出现在类的内部
-            static resolve(){}  //<!-- 静态属性 -->  //属于类，不属于构造对象
-            
-            <!-- 构造函数 -->
-            constructor(){
-                this.xxx = xxx;
-            };
-            
-            get name(){}  //属性被读取时触发、访问私有属性
-            set name(){}  //属性被调用时触发
+    class Car extends Vehicle{  // extends继承一个类
+        constructor(type){
+            super(type)  // 调用父类的构造函数
         }
+    }
 
-        extends继承一个类
-            class Pro extends Promise{
-                constructor(xxx){
-                    super(xxx)  调用父类的构造方法
-                }
-            }
+    let Mi = new Car()
 
-### 模块化
+<!-- Promise -->
+    const p = new Promise((resolve, reject)=>{resolve();reject();})
+        p.then((value)=>{}, (reason)=>{})
+        .catch((err) => {})  // 只能做失败回调(Promise链收尾)
+
+        中断promise链
+            返回一个peding状态的promise
+
+    <!-- promise方法 -->
+        Promise.resolve()
+            传入非promise对象,返回一个成功的promise对象
+            传入promise对象,由参数结果决定resolve结果
+
+        Promise.reject()
+            返回一个失败的promise对象
+
+        Promise.allSettled([])
+            传入promise数组
+            返回一个promise数组,值为每一个promise的状态和值
+
+        Promise.all([])
+            传入promise数组
+            返回promise,值是所有成功值的数组
+            (只有所有的promise都成功才成功,只要有一个失败就直接失败并返回第一个失败的promise)
+
+        Promise.race([])
+            传入promise数组
+            返回一个新的promise,最先完成promise状态改变的结果
+
+<!-- 模块化 -->
     # CommonJS
         暴露模块
             module.exports = {value}
             exports.name = value
         
         引入模块
-            require(xxx)
-                第三方模块(模块名字)
-                自定义模块(文件路径)
-
+            require(xxx)  // 模块名字/文件路径
+    
     # ES6
         暴露模块
             分别暴露
@@ -350,38 +209,237 @@
             统一引入
                 import * as API from 'url';
 
-### Promise
-    const p = new Promise((resolve, reject) => {xxx? resolve() : reject();})
-        p.then((value) => {}, (reason) => {})
+<!-- 
 
-        // 只能做失败回调
-        p.catch(() => {})
+# Map集合(扩展键的范围)
+    let m = new Map();
+    let school = {name: '学校'}
+    m.set(school, 'xxx')  // 添加一个key为{name: '学校'},值为'xxx'的键值对
 
-        异常穿透
-            promise链式最后调用.catch()
+# 属性名表达式
+    const obj = {
+        ["he"+"llo"](){return "Hi";}
+    }
+    obj.hello();  //"Hi"
 
-        中断promise链
-            返回一个peding状态的promise
+# import按需加载:
+    import("./js/count")
+    .then((res)=>{
+        console.log('模块加载成功', res)
+    })
+    .catch((err)=>{
+        console.log('模块加载失败', err)
+    })
 
-    promise方法
-        Promise.resolve()
-            传入非promise对象，返回一个成功的promise对象
-            传入promise对象，由参数结果决定resolve结果
+ -->
 
-        Promise.reject()
-            返回一个失败的promise对象
+#### Array数组√
+<!-- Set集合(数组去重) -->
+        let s = new Set(array);
 
-        Promise.all()
-            传入promise数组
-            返回一个新的promise，只有所有的promise都成功才成功，只要有一个失败就直接失败
+<!-- 添加 -->
+        array.unshift(1)  // 向数组开头添加元素，并返回新的长度(修改原数组)
+        array.push(1)  // 向数组末尾添加元素，并返回新的长度(改变原数组)
 
-        Promise.allSettled()
-            传入promise数组
-            返回一个promise数组，值为每一个promise的状态和值
+<!-- 删除 -->
+        array.shift()  // 删除并返回数组的第一个元素(改变原数组)
+        array.pop()  // 删除并返回数组的最后一个元素(改变原数组)
 
-        Promise.race()
-            传入promise数组
-            返回一个新的promise，最先完成promise状态改变的结果
+<!-- 读取 -->
+        array.slice(start, end)  // 选取数组的一部分，并返回(不改变原数组)(不带参数时返回自身)
+        array.at(index)  // 返回索引值的值(负数倒数)
+
+<!-- 修改 -->
+        array.reverse()  // 反转数组的元素顺序(改变原数组)
+        array.sort((a, b) => {return a-b;})	 // 对原数组的元素进行排序。默认升序
+        array.fill('', start, end)  // 使用一个值来替换数组(改变原数组)
+        array.splice(index, number, newItem)  // 删除并返回删除元素后添加新元素(改变原数组)
+        array.flat(2)  // 数组降维并返回，参数为深度(使用Infinity，可展开任意深度的嵌套数组)
+        array.flatMap(item => {})  将多维数组降维并遍历数组
+        
+<!-- 检索 -->
+        array.indexOf()  // 搜索数组中的元素，并返回它的索引值,没找到则返回-1
+        array.lastIndexOf()  // 从后面搜索数组中的元素，并返回它的索引值,没找到则返回-1
+        array.includes()  // 判断一个数组是否包含一个指定的值true/false
+
+<!-- 拼接 -->
+        array.join('')  // 使用字符串拼接数组，并返回拼接字符串
+        array.concat(arr)  // 连接两个或更多的数组/字符串，并返回结果
+        
+<!-- 遍历 -->
+        array.forEach((item, index) => {})  // 遍历数组
+        array.map((item) => {return})  // 遍历数组,并返回新数组
+
+<!-- 过滤 -->
+        array.filter((item) => {})  // 过滤器,返回所有匹配的值，并生成新的数组
+
+<!-- 判断 -->
+        array.every((item) => {})  // 遍历数组是否符合条件，全符合为true,否则false
+        array.some((item) => {})  // 遍历数组是否含有符合条件，只要有一项满足条件，就会返回true
+        array.find((item) => {})  // 返回第一个所匹配的值
+        array.findIndex(item => {})  // 返回第一个所匹配的值的索引
+
+<!-- 累加器 -->
+        array.reduce((total, item, index, arr)=>{}, value)  累加器（从左到右）
+            total  必需。初始值, 或者计算结束后的返回值。
+            item  必需。当前元素
+            index  可选。当前元素的索引
+            arr  可选。当前元素所属的数组对象
+            value  可选。传递给函数的初始值
+        
+<!-- Array -->
+        Array.isArray()  // 判断是否为数组
+        Array.from(arr, callback)  // 通过给定的对象中(伪数组)创建一个数组(必须要有length属性)
+        Array.of(item, item2...)  // 将一组值转换为数组
+
+<!-- 
+    array.copyWithin(index, start, end)  // 从指定位置拷贝元素到数组的另一个指定位置中(覆盖原数组)
+        index  必需。复制到指定目标索引位置。
+        start  可选。元素复制的起始位置。
+        end  可选。停止复制的索引位置 (默认为 array.length)。如果为负值，表示倒数。
+
+    array.entries()  // 返回数组的可遍历对象
+        let E = array.entries()
+        console.log(E.next().value)  // [index, item]
+    array.keys()  // 返回数组的可迭代对象，包含原始数组的键(key)
+        let K = array.keys()
+        console.log(K.next().value)  // 0(索引值)
+ -->
+
+#### Number数字√
+        Number()  // 将字符串转换为数字(''/[] 为0)
+        Number.isFinite(num)  // 判断是否为有限数字
+        Number.isInteger(num)  // 判断是否为整数
+        Number.isNaN(num)  // 判断传递的参数是否为NaN
+        Number.EPSILON  // 表示最小误差
+        
+        number.toFixed(num)  // 保留几位小数(四舍五入)
+        number.toPrecision(num)  // 返回一个指定长度的数字(四舍五入)
+
+<!-- 
+    Infinity  正无穷
+    -Infinity  负无穷
+    Number.MAX_VALUE  最大值
+    Number.MIN_VALUE  最小值
+    Number.MIN_SAFE_INTEGER  最小安全整数
+    Number.MAX_SAFE_INTEGER  最大安全整数
+ -->
+
+#### Math数学√
+        Math.random()  // 1~0之间的随机数
+        Math.abs(x)  // 返回 x 的绝对值
+        Math.round()  // 四舍五入
+        Math.ceil()  // 对数进行上舍入(5.12=6)
+        Math.floor()  // 对数进行下舍入(1.59=1)
+        Math.max(...arr)  // 返回最高值
+        Math.min(...arr)  // 返回最低值
+        Math.pow(x, y)  // 返回x的y次幂
+        Math.trunc()  // 去掉小数部分
+        Math.sign()  // 判断为正数1 负数-1 还是零0
+        Math.sqrt(x)  // 返回数的平方根
+
+        Math.PI  // 圆周率3.141592653589793
+
+#### String字符串√
+        str.split('')  把字符串分割为字符串数组
+        .trim()  // 去除首尾空白
+        .charAt(index)  // 返回在指定索引的字符
+        .toUpperCase()  // 把字符串转换为大写
+        .toLowerCase()  // 把字符串转换为小写
+        .search('')  // 查找相匹配的值,并返回索引值,没找到则返回-1(or正则)
+        .charCodeAt(index)  // 返回在指定索引值的字符的 Unicode 编码
+
+        String.fromCharCode()  // 将 Unicode 编码转为字符
+
+<!-- 
+        string.trimStart()  // 去除开头空白
+        string.trimEnd()  // 去除结尾空白
+        .replace('oldStr', 'newStr')  // 匹配字符串并替换(单个)
+        .replaceAll('oldStr', 'newStr')	// 匹配字符串并替换(所有)
+        .startsWith('')  // 查看字符串是否以指定的字符串开头
+        .endsWith('')  // 判断当前字符串是否是以指定的子字符串结尾的
+        .localeCompare()  用本地特定的顺序来比较两个字符串,完全匹配0 匹配1 不匹配-1
+
+        .substring(index, index)  // 提取字符串中两个指定的索引号之间的字符
+        .repeat(num)  // 复制字符串指定次数，并将它们连接在一起返回
+        match(reg)  正则表达式的匹配,返回匹配值
+        matchAll(reg)  批量匹配
+ -->
+
+#### Object对象
+        Object.create(obj)  // 创建一个对象(关联一个对象)(Object.create(null)创建空对象)
+
+        Object.is(a, b)  // 判断两个对象是否相等
+        Object.assign(obj, obj1)  // 合并对象(同属性会覆盖)(浅拷贝)
+<!-- 
+        Object.entries(obj)  // 返回对象可遍历属性[key, value]的数组
+        Object.fromEntries()  // 把[key, value]的数组转换成对象
+        Object.keys(obj)  // 返回一个数组,包含所有可枚举属性
+        Object.getOwnPropertyDescriptors(obj)  // 获取对象属性的描述对象
+ -->
+
+#### Object.Prototype
+    obj.valueOf()  // 返回对象的原始值
+    obj.toString()	// 转换为字符串(或转换16、8、2进制)
+    obj.isPrototypeOf(obj1)  // 判断当前对象是否为另外一个对象的原型
+    obj.hasOwnProperty('key')  // 检索对象是否包含该属性
+
+    Object.setPrototypeOf(obj1.prototype, obj2.prototype)  // 给原型对象关联原型对象
+    Object.getPrototypeOf(obj)  // 读取对象的原型对象
+<!-- 
+    Object(x)  // 封装对象(obj.valueOf()解封对象)
+    obj.constructor  // 返回对象的构造函数
+-->
+
+#### Symblo类型(常用于私有属性)
+    let sym = Symblo();  //函数
+    let sym = Symblo.for();  //函数对象
+    独一无二
+    不能运算
+    不能for...in循环,但是可以使用reflect.ownKeys来获取对象的所有键名
+    防止创建方法和对象本身的方法冲突
+        const game = {}
+        let sym = Symblo();
+        game[sym] = functiom(){}
+        game[sym]();
+    
+    Symbol.prototype.description  获取symblo字符串描述
+
+    Object.getOwnPropertySymbols(obj)  // 获取对象中所有符号
+
+#### RegExp正则
+    https://www.runoob.com/jsref/jsref-obj-regexp.html
+    const phone = /^1\d{10}$/
+
+    let iphone = /^1[0-9]{10}$/
+    let password = /^[a-z][a-z0-9]{5}$/
+        ^ 开始标记
+        $ 结束标记
+
+#### Date日期
+    let Time = new Date()  // 创建时间对象  Sat Feb 01 2025 12:42:32 GMT+0800 (中国标准时间)
+
+    toLocaleString()  // 根据本地时间格式，把 Date 对象转换为字符串。2023/5/31 14:11:53
+    toLocaleDateString()  // 根据本地时间格式，把 Date 对象的日期部分转换为字符串。2023/5/31
+    toLocaleTimeString()  // 根据本地时间格式，把 Date 对象的时间部分转换为字符串。14:12:12
+
+    get/set/getUTC/setUTC
+    getTime()  返回 1970 年 1 月 1 日至今的毫秒数。
+    getFullYear()  返回年份
+    getMonth()  返回月份(0-11)
+    getDate()  返回当日
+    getHours()  返回小时
+    getMinutes()  返回分钟
+    getSeconds()  返回秒数
+    getMilliseconds()  返回毫秒
+    getDay()  一周中的某一天
+
+    UTC()  根据世界时返回 1970 年 1 月 1 日 到指定日期的毫秒数
+    toUTCString()  根据世界时，把 Date 对象转换为字符串
+    parse()	返回1970年1月1日午夜到指定日期（字符串）的毫秒数。
+
+    toJSON()	以 JSON 数据格式返回日期字符串。
+    toISOString()	使用 ISO 标准返回字符串的日期格式。
 
 ## Dom对象√
 
@@ -649,10 +707,12 @@
 
         location.reload()  // 刷新当前页面
 
-    <!-- history对象 -->
-        history.back()  // 回退
-        history.forward()  // 前进
-        history.go(number|URL)  // 指定步数
+<!-- 
+# history对象
+    history.back()  // 回退
+    history.forward()  // 前进
+    history.go(number|URL)  // 指定步数
+ -->
 
 <!-- 
     screen.availWidth  // 返回屏幕的宽度(不包括Windows任务栏)
@@ -682,48 +742,7 @@
     atob()	解码一个 base-64 编码的字符串
  -->
 
-## RegExp正则
-    https://www.runoob.com/jsref/jsref-obj-regexp.html
-    const phone = /^1\d{10}$/
-
-    let iphone = /^1[0-9]{10}$/
-    let password = /^[a-z][a-z0-9]{5}$/
-        ^ 开始标记
-        $ 结束标记
-
-## Date日期
-    let Time = new Date()  // 创建时间对象
-
-    toLocaleString()  // 根据本地时间格式，把 Date 对象转换为字符串。2023/5/31 14:11:53
-    toLocaleDateString()  // 根据本地时间格式，把 Date 对象的日期部分转换为字符串。2023/5/31
-    toLocaleTimeString()  // 根据本地时间格式，把 Date 对象的时间部分转换为字符串。14:12:12
-
-    get/set/getUTC/setUTC
-    getTime()	返回 1970 年 1 月 1 日至今的毫秒数。
-    getFullYear()   返回年份
-    getMonth()      返回月份(0-11)
-    getDate()       返回当日
-    getHours()      返回小时
-    getMinutes()    返回分钟
-    getSeconds()	返回秒数
-    getMilliseconds()   返回毫秒
-    getDay()        一周中的某一天
-
-    UTC()	根据世界时返回 1970 年 1 月 1 日 到指定日期的毫秒数
-    toUTCString()	根据世界时，把 Date 对象转换为字符串
-    parse()	返回1970年1月1日午夜到指定日期（字符串）的毫秒数。
-
-    toJSON()	以 JSON 数据格式返回日期字符串。
-    toISOString()	使用 ISO 标准返回字符串的日期格式。
-    
-
-    toString()	转换为字符串。Wed May 31 2023 14:12:31 GMT+0800 (中国标准时间)
-    toDateString()	把 Date 对象的日期部分转换为字符串。
-    toTimeString()	把 Date 对象的时间部分转换为字符串。14:12:57 GMT+0800 (中国标准时间)
-
-    
-        
-## 
+##
 <!-- 
     ## 各浏览器兼容性
     # 窗口尺寸
@@ -741,22 +760,3 @@
             例: 实用的 JavaScript 方案（涵盖所有浏览器，包含 IE8 及以下版本的浏览器）：
                 var w=window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
                 var h=window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-## JavaScript 原理
-    运行原理：编译一行，执行一行。
-        编译    声明变量
-        执行   赋值
-        赋值变量LHS查询
-        引用变量RHS查询
-
-    堆与栈: 
-
-    作用域：能够储存变量中的值，并且能对其进行访问或修改的区域。
-
-    闭包: 形成一个不销毁的栈环境。
-
-    with()/eval()：
-        把字符串当作js代码执行（非"use strict"；模式下）
-        注意️：影响性能，引擎无法在编译时对其作用域查找进行优化
-
-    this指向:

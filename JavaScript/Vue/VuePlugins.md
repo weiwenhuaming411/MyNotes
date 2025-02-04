@@ -1,3 +1,20 @@
+## element Plus
+    pnpm i element-plus
+
+    pnpm install @element-plus/icons-vue  // icon图标
+        import { Search } from '@element-plus/icons-vue';
+
+
+
+
+
+
+
+
+
+
+    
+
 ## animate.css 动画库
     npm i anitate.css
     import 'anitate.css'

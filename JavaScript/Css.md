@@ -7,26 +7,6 @@
     优先级
         内联样式 > 内部样式 > 外部样式 > 默认样式
 
-    初始化配置
-        *{
-            margin: 0;
-            padding: 0;
-        }
-        ul, ol, li{
-            list-style: none;
-        }
-        a, a:active, a:hover, a:link{
-            text-decoration: none;
-        }
-        input, button, select, textarea{
-            outline: none;
-        }
-        img{
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
 <!-- 
     引入外部资源
         @charset  属性指定样式文件(.css 后缀)中使用的字符编码，且只能在 CSS 文件中使用。
@@ -82,12 +62,13 @@
     div|伪元素:  div  1
     *
 
+    >>> .class  // 深度选择器
     #HEADER {}  // id选择器
     .header {}  // 类选择器
     [name] {}  // 属性选择器
     p {}  // 元素选择器
     * {}  // 通配选择器
-    
+
     
     div,p {}  // 选择所有 <div> 元素和 <p> 元素
     div p {}  // 后代选择器(空格分隔)
@@ -703,6 +684,16 @@
             -webkit-box-orient: vertical;  //对齐模式
 
 ## Sass
+    pnpm i sass  // 安装sass
+
+    div{
+        p{}  // 嵌套样式
+        &.class {}  // 并级样式
+    }
+
+    :deep(){}  // 深度选择器
+
+
     https://www.sass.hk/
     Live Sass Compiler扩展
         配置

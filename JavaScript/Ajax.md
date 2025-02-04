@@ -1,8 +1,4 @@
 ## HTTP协议
-    HTTPS协议默认端口443
-    HTTP协议默认端口80
-    127.0.0.1  // 本机
-
     ## 请求报文
         行      GET/POST（请求类型）    /s?ie=utf-8（url路径）     HTTP/1.1（协议版本）
         头      Host: atguigu.com（告知服务器请求体类型）
@@ -79,25 +75,16 @@
             }
 
 ## axios
-    axios({
-            method: 'get查',/post增/put改/delete删
-            url: 'http://localhost:3000/posts/2',
-            data: {
-                title: '初一就可以看电影啦！',
-                author: '2023.01.21'
-            },
-            cancelToken: new axios.CancelToken(function(c){
-                cancel = c;
-            })
-        }).then(res => {
-            console.log(res)
-        })
+    pnpm i axios  // 
 
-    请求拦截器、响应拦截器
-        创建axios实例
+<!-- 二次封装axios -->
+    import axios from "axios";
+
+    ../utils/request.ts:
+        // 创建axios实例
         const request = axios.create({
-            beseURL: '/api',
-            timeout: 3000,
+            baseURL: '/api',  // 请求基础路径
+            timeout: 3000  // 请求超时限制
         });
 
         // 请求拦截器
@@ -112,7 +99,41 @@
             return Promise.reject(new Error('faile'));
         });
 
-## <!-- 接口测试工具 -->
-        apipost
-        apifox
-        postman
+        export default request;
+
+    import request from '@/utils/request'
+    request.get('/api').then((res)=>{
+        console.log(res)
+    })
+
+<!-- 接口统一管理 -->
+    ../api/home/index.ts
+        import request from '@/utils/request'
+
+        // 通过枚举管理首页模块的接口地址
+        enum API {
+            HOSPITAL_URL = '/hosp/hospital/'  // 获取已有的医院的数据接口类型
+        }
+
+        // 获取数据
+        export const reqHospital = (page: number, limit: number)=>{
+            return request.get(API.HOSPITAL_URL + `${page}/${limit}`)
+        }
+
+    import {reqHospital} from '@/api/home'
+    reqHospital(pageNo.value, pageSize.value)
+
+<!--  -->
+    axios({
+            method: 'get查',/post增/put改/delete删
+            url: 'http://localhost:3000/posts/2',
+            data: {
+                title: '初一就可以看电影啦！',
+                author: '2023.01.21'
+            },
+            cancelToken: new axios.CancelToken(function(c){
+                cancel = c;
+            })
+        }).then(res => {
+            console.log(res)
+        })

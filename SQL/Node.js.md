@@ -34,10 +34,12 @@
 
         npm config delete proxy  // 取消代理
         npm config delete https-proxy
-<!-- 
-    pnpm(高性能的npm，优化了npm和yarn的潜在bug)
-        npm i -g pnpm
- -->
+
+## pnpm(高性能的npm，优化了npm和yarn的潜在bug)
+    npm i pnpm -g  // 全局安装
+
+    pnpm dev --open  // 运行项目并打开
+
 
 <!-- 
     切换镜像

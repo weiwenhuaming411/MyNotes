@@ -1,5 +1,5 @@
 ## TypeScript
-    npm i -g typescript
+    npm i typescript -g
 
 <!-- 
     vue3:
@@ -15,41 +15,34 @@
             import {type PersonInter} from 'path'
             let person:PersonInter = {id:'0',name:'杨超越',age:18}
  -->
-    <!-- interface定义接口 -->
-            interface PersonInter{}  // 定义
 
-    <!-- <>泛型 -->
-        let person:Array<PersonInter> = []
+<!-- interface定义接口 -->
+    interface PersonInter{
+        id: string,
+        name: string
+    }  // 定义
 
+<!-- <>泛型 -->
+    let person:Array<PersonInter> = []
 
+<!-- 类型断言 -->
+        value as string  // 
+        变量<类型>
         
+<!-- 类型 -->
+    number
+    string
+    boolean
+    object  //{}、let b :{name: string, [name: string]: any}
+    function  //(形参：类型, ...) => 返回值类型
+    array  //数值类型[]、Array<类型>
+    any  //任意类型
     
-        
+    类型别名  type 属性名 = 类型;
 
 
 
-
-
-
-
-
-
-
-
-    类型断言
-        变量 as 类型
-        <类型>变量
-
-    类型
-        number
-        string
-        boolean
-        boject  //{}、let b :{name: string, [name: string]: any}
-        function  //(形参：类型, ...) => 返回值类型
-        array  //数值类型[]、Array<类型>
-        any  //任意类型
-        
-        类型别名  type 属性名 = 类型;
+    
  
     面向对象
         类
