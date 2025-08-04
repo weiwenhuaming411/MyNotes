@@ -2,8 +2,6 @@
     # webpakc是一个静态资源打包工具:
         压缩代码、兼容性处理、提升代码性能
 
-        注: webpack默认对外暴露图片、JSON数据格式
-
     # 基础步骤
         npm init -y  // 初始化package.json
         npm i webpack webpack-cli -D  // 安装webpack依赖
@@ -139,7 +137,6 @@
                 extends: [
                     "eslint:recommended",  // eslint官方规则
                     // "plugin:vue/essential",  // Vue Cli官方规则
-                    // "react-app"  // React Cli官方规则
                 ],
                 env: {
                     browser: true,  // 浏览器全局变量

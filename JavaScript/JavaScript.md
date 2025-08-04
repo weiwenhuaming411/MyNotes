@@ -1,51 +1,18 @@
 ## JavaScript 原理
-    "use strict";  // 严格模式
-    debugger;  // 断点、调试代码
     //#region  // 注释折叠
 
-<!-- 数据类型 -->
-    值类型: 
-        object
-        number
-        string
-        boolean  // 值为0、-0、null、""、false、undefined、NaN时为false
-        null
-        undefined
-        symblo
-
-    引用类型: 
-        Function
-        Array
-
-        String
-        Number
-        Boolean
-        Object
-        Error
-        RegExp
-        Date  // new Date()
-
-<!-- 运算符 -->
-    void foo()  // 计算一个表达式,但不返回值(undefined)
-    + - ++ -- * / %
-    = += -= *= /= %=
-    == === != !== > < >= <=
-    !
-    ||  // 返回第一个为true的值,否则返回最后一个值
-    &&  // 返回第一个为false的值,否则返回最后一个值
-
 <!-- 属性 -->
-    length  // 对象长度
     data-name='value'
         element.dataset  // 获取自定义属性合集
         element.dataset.name  // 读取自定义属性
+
 <!-- 方法 -->
     typeof()  // 检测值类型
     parseInt()  // 将字符串转换成整型数字
     parseFloat()  // 将字符串转换成浮点数
 
-    encodeURI()  把字符串编码为 URI
-    decodeURI()  解码某个编码的 URI
+    encodeURI()  把字符串编码为URI
+    decodeURI()  解码某个编码的URI
 
 <!-- Error错误处理 -->
     try(){
@@ -69,8 +36,6 @@
         break;
         default: ccc;  // 都不匹配则触发
     }
-
-    if(){}else{}
     
     while(i<5){console.log(i++)}  // 条件为真时循环执行代码块
     do{}while()  // 条件为真前先执行一次代码块
@@ -106,27 +71,6 @@
 <!-- JSON -->
     JSON.parse(data)  // 将JSON转换成字符串
     JSON.stringify()  // 将字符串转换成JSON
-
-<!-- 数据代理原理 -->
-    Object.defineProperty():
-        Object.defineProperty(obj, 'key', {
-            value: '',  // 设置初始值,默认值undefine
-            enumerable: true,  // 控制属性是否可以枚举，默认值false
-            writable: true,  // 控制属性是否可以修改，默认值false
-            configurable: true,  // 控制属性是否可以被删除或配置，默认值false
-            get(){},  // 读取时触发
-            set(value){}  // 修改时触发
-        })  // 没有返回值,不方便捕获错误
-
-    Reflect.definePropety():
-        Reflect.definePropety(obj, 'key', {})  // 反射对象,有返回值,方便捕获错误
-
-    Proxy(代理):  // 拦截对象中任意属性的变化
-        const p = new Proxy(obj, {
-            get(target, propName){return Reflect.get(target, propName)},  // 读取属性时触发
-            set(target, propName, value){return Reflect.set(target, propName, value)},  // 添加、修改属性时触发
-            deleteProperty(target, propName){return Reflect.deleteProperty(target, propName, value)}  // 删除属性时触发
-        })
 
 <!-- calss 类 -->
     calss Vehicle{
@@ -307,14 +251,14 @@
  -->
 
 #### Number数字√
-        Number()  // 将字符串转换为数字(''/[] 为0)
-        Number.isFinite(num)  // 判断是否为有限数字
-        Number.isInteger(num)  // 判断是否为整数
-        Number.isNaN(num)  // 判断传递的参数是否为NaN
-        Number.EPSILON  // 表示最小误差
-        
-        number.toFixed(num)  // 保留几位小数(四舍五入)
-        number.toPrecision(num)  // 返回一个指定长度的数字(四舍五入)
+    Number()  // 将字符串转换为数字(''/[] 为0)
+    Number.isFinite(num)  // 判断是否为有限数字
+    Number.isInteger(num)  // 判断是否为整数
+    Number.isNaN(num)  // 判断传递的参数是否为NaN
+    Number.EPSILON  // 表示最小误差
+    
+    number.toFixed(num)  // 保留几位小数(四舍五入)
+    number.toPrecision(num)  // 返回一个指定长度的数字(四舍五入)
 
 <!-- 
     Infinity  正无穷
@@ -409,12 +353,14 @@
 
 #### RegExp正则
     https://www.runoob.com/jsref/jsref-obj-regexp.html
-    const phone = /^1\d{10}$/
+    const phone = 13287654321
 
-    let iphone = /^1[0-9]{10}$/
+    let regIphone = /^1[0-9]{10}$/
     let password = /^[a-z][a-z0-9]{5}$/
         ^ 开始标记
         $ 结束标记
+
+    regIphone.test(phone) // 检查是否符合正则 true/false
 
 #### Date日期
     let Time = new Date()  // 创建时间对象  Sat Feb 01 2025 12:42:32 GMT+0800 (中国标准时间)
@@ -444,26 +390,29 @@
 ## Dom对象√
 
 #### Document 对象√
-    <!-- DOM属性 -->
-        document.documentElement  返回文档的根节点  // <html lang="en"></html>
-        document.cookie  设置或返回与当前文档有关的所有cookie
-        document.title  返回当前文档的标题  // Document
-        document.body  返回文档的body元素
-        document.URL  返回文档完整的URL  // http://127.0.0.1:5501/html-demo/HTML/index.html
+<!-- DOM属性 -->
+    document.documentElement  返回文档的根节点  // <html lang="en"></html>
+    document.cookie  设置或返回与当前文档有关的所有cookie
+    document.title  返回当前文档的标题  // Document
+    document.body  返回文档的body元素
+    document.URL  返回文档完整的URL  // http://127.0.0.1:5501/html-demo/HTML/index.html
 
-    <!-- DOM方法 -->
-        创建node节点
-        document.createElement('button')  // 创建元素节点
-        document.createAttribute('class')  // 创建属性节点  // attr.value='demo'
-        document.createTextNode('按钮')  // 创建文本节点
+<!-- DOM方法 -->
+    创建node节点
+    document.createElement('button')  // 创建元素节点
+    document.createAttribute('class')  // 创建属性节点  // attr.value='demo'
+    document.createTextNode('按钮')  // 创建文本节点
 
-        获取元素节点
-        document.getElementById('ID')  // 返回指定 ID 的元素
-        document.getElementsByName('name')  // 返回带有指定名称的对象的集合
-        document.getElementsByTagName('div')  // 返回指定标签名的所有子元素集合
-        document.getElementsByClassName('class')  // 返回所有指定类名的元素集合
-        document.querySelector('div'|'#ID'|'.class'|'attr'|'value')  // 返回指定元素的第一个子元素
-        document.querySelectorAll()  // 返回指定元素的所有子元素节点列表
+    获取元素节点
+    document.querySelector('div'|'#ID'|'.class'|'attr'|'value')  // 返回指定元素的第一个子元素
+    document.querySelectorAll()  // 返回指定元素的所有子元素节点列表
+
+<!-- 
+    document.getElementById('ID')  // 返回指定 ID 的元素
+    document.getElementsByName('name')  // 返回带有指定名称的对象的集合
+    document.getElementsByTagName('div')  // 返回指定标签名的所有子元素集合
+    document.getElementsByClassName('class')  // 返回所有指定类名的元素集合 
+-->
 
 <!-- 
         document.doctype  返回与文档相关的文档类型声明 (DTD)  // <!DOCTYPE html>
@@ -472,10 +421,6 @@
 
         document.createComment('注释')  创建注释节点
         document.hasFocus()  // 方法来查看当前整个文档是否获取焦点
-
-        添加事件
-        document.addEventListener('click', ()=>{}, true/false)  // 添加事件
-        document.removeEventListener()  // 移除事件
  -->       
 
 #### element 对象√
@@ -551,26 +496,24 @@
             element.matches('.class')  检索元素是否存在指定的CSS选择器(true/false)
 
 <!-- 文档/元素宽高 -->
-        <!-- offset包含边框 -->
+    <!-- offset包含边框 -->
         element.offsetWidth  // 返回元素的宽度
         element.offsetHeight  // 返回元素的高度
-        element.offsetLeft  // 返回当前元素X轴偏移文档左边缘的距离
-        element.offsetTop  // 返回当前元素的Y轴偏移文档顶部边缘的距离
-        element.offsetParent  // 返回元素的偏移父元素  // <body></body>
 
-        <!-- client不含边框(不含滚动条) -->
+    <!-- client不含边框(不含滚动条) -->
         element.clientWidth  // 返回元素的可视宽度
         element.clientHeight  // 返回元素的可视高度
-        element.clientLeft  // 返回元素左边框宽度
-        element.clientTop  // 返回元素上边框宽度
 
-        <!-- scroll不含边框(不含滚动条样式) -->
+    <!-- scroll不含边框(不含滚动条样式) -->
         element.scrollWidth  // 返回元素的整个宽度(包括带滚动条的隐蔽的宽度)
         element.scrollHeight  // 返回元素的整个高度(包括带滚动条的隐蔽的宽度)
         element.scrollLeft  // 返回元素滚动后的左边缘和视图左边缘之间的距离
         element.scrollTop  // 返回元素滚动后的顶部边缘和视图顶部边缘之间的距离
 
 <!-- 
+        element.offsetLeft  // 返回当前元素X轴偏移文档左边缘的距离
+        element.offsetTop  // 返回当前元素的Y轴偏移文档顶部边缘的距离
+
         element.dir  设置或返回一个元素中的文本方向  // ltl左、rtl右
         element.contentEditable  // 设置或返回元素的内容是否可编辑(inherit继承/true可编辑/false不可编辑)
 
@@ -581,11 +524,8 @@
  -->
 
 #### 属性对象√
-    element.attributes.item(index)  // 返回指定索引的属性节点
-    element.attributes.length  返回属性列表的属性数目
-
     attr.isId  // 判断该属性是否是id(true/false)
-    attr.specified  // 判断是否存在该属性(true/false)
+    attr.specified()  // 判断是否存在该属性(true/false)
 
     element.attributes.setNamedItem(attr)  // 从属性列表中设置指定属性节点(通过名称)
     element.attributes.getNamedItem("onclick")  // 从属性列表中返回的指定属性节点
@@ -594,24 +534,24 @@
 #### 事件对象√
     scroll  // 滚动条事件
 
-    <!-- 事件属性 -->
-        event.type  // 触发事件的类型
-        target  // 触发事件的元素
-        event.currentTarget  // 绑定事件的元素
+<!-- 事件属性 -->
+    event.type  // 触发事件的类型
+    target  // 触发事件的元素
+    event.currentTarget  // 绑定事件的元素
 
-    <!-- 鼠标事件对象属性 -->
-        event.button  // 返回当事件被触发时，哪个鼠标按钮被点击  // 0左键|1中间|2右键
+<!-- 鼠标事件对象属性 -->
+    event.button  // 返回当事件被触发时，哪个鼠标按钮被点击  // 0左键|1中间|2右键
 
-        event.clientX  // 鼠标指针相对于浏览器页面的水平坐标
-        event.clientY  // 鼠标指针相对于浏览器页面的垂直坐标
+    event.clientX  // 鼠标指针相对于浏览器页面的水平坐标
+    event.clientY  // 鼠标指针相对于浏览器页面的垂直坐标
 
-    <!-- 鼠标事件 -->
+<!-- 鼠标事件 -->
     click  // 单击
     mouseenter  // 鼠标移至元素时(非冒泡)
     mouseleave  // 鼠标移出元素时(非冒泡)
     mousemove  // 鼠标移动时
 
-    <!-- input输入框事件 -->
+<!-- input输入框事件 -->
     focus  // 元素获取焦点时触发
     blur  // 元素失去焦点时触发
     input  // 元素获取用户输入时触发(立即触发)
@@ -619,13 +559,6 @@
     select  // 用户选取文本时触发
 
 <!-- 
-    form表单事件
-        submit  // 表单提交时触发(<form></form>)
-        invalid  // 当元素无效时运行脚本
-        contextmenu  // 当触发上下文菜单时运行脚本
-        formchange  // 当表单改变时运行脚本
-        forminput  // 当表单获得用户输入时运行脚本
-
     鼠标事件
         dblclick  // 双击
         contextmenu  // 鼠标右键
@@ -635,38 +568,6 @@
         mouseout  // 鼠标移出元素时(冒泡)
         mousewheel  // 鼠标滚轮转动时
         event.relatedTarget  // 返回触发事件的节点(mouseover,离开了哪个节点/mouseout,进入到哪个节点)
-
-    键盘事件
-        keydown  按下按键时
-        keypress  按下并松开按键时
-        keyup  松开按键时
-
-    onresize  // 在窗口或框架被调整大小时发生<body></body>
-    onpageshow  // 该事件在用户访问页面时触发<body></body>
-    onload  // 在页面第一次加载时触发(只触发一次)<body></body>
-    onbeforeunload  // 即将离开页面（刷新或关闭）时触发<body></body>
-    onpagehide	// 在用户离开网页时触发<body></body>
-    onunload  // 用户退出页面<body></body>
-
-    剪贴板事件
-        oncopy  该事件在用户拷贝元素内容时触发
-        onpaste  该事件在用户粘贴元素内容时触发
-        oncut  该事件在用户剪切元素内容时触发
-
-    # 拖动事件
-        ondrag  该事件在元素正在拖动时触发
-        ondragend  该事件在用户完成元素的拖动时触发
-        ondragenter  该事件在拖动的元素进入放置目标时触发
-        ondragleave  该事件在拖动元素离开放置目标时触发
-        ondragover  该事件在拖动元素在放置目标上时触发
-        ondragstart  该事件在用户开始拖动元素时触发
-        ondrop  该事件在拖动元素放置在目标区域时触发
-
-    # CSS事件
-        animationend  CSS 动画结束播放时
-        animationiteration  CSS 动画重复播放时
-        animationstart  CSS 动画开始播放时
-        transitionend  CSS 完成过渡后触发
 
     #事件属性
         event.screenX  // 鼠标指针相对于屏幕的水平坐标
@@ -679,17 +580,13 @@
         confirm()  // 显示带有一段消息以及确认按钮和取消按钮的对话框 ??? 如何获取用户点击
         prompt()  // 显示可提示用户输入的对话框  ??? 如何获取用户输入
 
-    <!-- screen对象 -->
-        screen.width  // 返回屏幕的总宽度
-        screen.height  // 返回屏幕的总高度
-
     <!-- 本地存储 -->
-        localStorage.setItem("key", "value")  // 添加键和值
+        localStorage.setItem("key", JSON.stringify("value"))  // 添加键和值
         localStorage.getItem("key")  // 返回指定键的值
         localStorage.removeItem("key")  // 移除键
         localStorage.clear()  // 清除存储对象中所有的键
 
-        sessinStorage.setItem("key", "value")  // 添加键和值
+        sessinStorage.setItem("key", JSON.stringify("value"))  // 添加键和值
         sessinStorage.getItem("key")  // 返回指定键的值
         sessinStorage.removeItem("key")  // 移除键
         sessinStorage.clear()  // 清除存储对象中所有的键
@@ -701,24 +598,13 @@
         location.hostname  // 返回URL的主机名  // 127.0.0.1
         location.port  // 返回URL端口号  // 5501
         location.pathname  // 返回的URL路径名  // /html-demo/HTML/index.html
-        location.search  // 返回一个URL的查询部分  // ?
-        location.hash  // 返回一个URL的锚部分  // #
-        location.origin  // 起源  // http://127.0.0.1:5501
+        location.origin  // 起源  // http://127.0.0.1:5501  // encodeURIComponent(location.origin)编码
 
         location.reload()  // 刷新当前页面
 
 <!-- 
-# history对象
-    history.back()  // 回退
-    history.forward()  // 前进
-    history.go(number|URL)  // 指定步数
- -->
-
-<!-- 
     screen.availWidth  // 返回屏幕的宽度(不包括Windows任务栏)
     screen.availHeight  // 返回屏幕的高度(不包括Windows任务栏)
-    window.screenLeft || window.screenX  // 返回窗口相对于屏幕的x坐标(不兼容火狐||不兼容IE)
-    window.screenTop || window.screenY  // 返回窗口相对于屏幕的y坐标(不兼容火狐||不兼容IE)
  -->
 
  <!-- 
@@ -732,31 +618,6 @@
     window.outerWidth  // 返回当前窗口调节宽度，包含工具条与滚动条(可调节)(整个页面大小)
     window.outerHeight  // 返回当前窗口调节高度，包含工具条与滚动条(可调节)(整个页面大小)
 
-    window.open(url[,opution(宽高)])  打开一个新的浏览器窗口
-    window.close()  关闭浏览器窗口
-    window.moveBy(x, y)  可相对窗口的当前坐标把它移动指定的像素
-    window.moveTo(x, y)  把窗口的左上角移动到一个指定的坐标
-    window.resizeTo(x, y)	把窗口的大小调整到指定的宽度和高度
-    window.resizeBy(x, y)	按照指定的像素调整窗口的大小
     btoa()	创建一个 base-64 编码的字符串
     atob()	解码一个 base-64 编码的字符串
  -->
-
-##
-<!-- 
-    ## 各浏览器兼容性
-    # 窗口尺寸
-        有三种方法能够确定浏览器窗口的尺寸:
-            对于Internet Explorer、Chrome、Firefox、Opera 以及 Safari：
-                window.innerHeight - 浏览器窗口的内部高度(包括滚动条)
-                window.innerWidth - 浏览器窗口的内部宽度(包括滚动条)
-            对于 Internet Explorer 8、7、6、5：
-                document.documentElement.clientHeight
-                document.documentElement.clientWidth
-            或者
-                document.body.clientHeight
-                document.body.clientWidth
-
-            例: 实用的 JavaScript 方案（涵盖所有浏览器，包含 IE8 及以下版本的浏览器）：
-                var w=window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-                var h=window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;

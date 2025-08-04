@@ -9,10 +9,6 @@
         --save-dev/-D  开发环境依赖  依赖写入package.json → devDependencies
 
     ## 常用指令
-        npm init -y  // 初始化package.json
-        npm install  // 下载package.json依赖
-
-        npm i <name>@versions  // 下载包以及指定包版本
         npm uninstall|remove|rm|r|un <name>  // 删除
         npm update|up <name> --save  // 更新包,注: save为false.
 
@@ -24,8 +20,6 @@
         npm cache clean --force  // 清除缓存
 
     <!-- 项目 -->
-        npm run serve/npm start  // 启动
-        npm run build  // 打包
         npm run lint  // 检查修复
 
     <!-- 设置代理 -->
@@ -38,7 +32,15 @@
 ## pnpm(高性能的npm，优化了npm和yarn的潜在bug)
     npm i pnpm -g  // 全局安装
 
+<!-- 常用指令 -->
+    pnpm init -y  // 初始化package.json
+    pnpm install // 安装依赖
+
+    pnpm i <name>@versions  // 下载包以及指定包版本
+
+<!-- 项目 -->
     pnpm dev --open  // 运行项目并打开
+    pnpm build  // 项目打包
 
 
 <!-- 

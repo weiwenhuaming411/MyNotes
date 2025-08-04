@@ -1,17 +1,7 @@
 ## Git
-    git init  // 初始化仓库
-    git clone git@github.com:weiwenhuaming411/MyNotes.git  // 克隆远程仓库
-
-    # 个人信息配置: 
-        git config --list  // 显示当前git配置信息
-        git config --global user.name "MacBook Pro M3"  // 设置提交代码时的用户信息/修改
-        git config --global user.email "lushengjin411@gmail.com"  // 设置提交代码时的用户信息/修改
-        获取SSH  ssh-keygen -t rsa   enter>>>  // 配置SSH   
-            id_rsa.pub
-
     # 连接仓库
         git remote add origin git@github.com:weiwenhuaming411/MyNotes.git
-                            
+             
           // 配置远程连接为origin
         git remote -v  查看远程连接
         git remote remove origin  删除远程连接
