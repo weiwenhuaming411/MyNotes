@@ -11,6 +11,7 @@
     pnpm i sass  // 安装sass
 
 ## API
+    import Home from 'path'
     app.component('Home', Home)  // 注册全局组件
 
 <!-- v-bind(单向) -->
@@ -156,8 +157,6 @@
  -->
 
 ## Vue-router √
-    src/views/...  // 路由组件
-
     $route： 每个组件都有自己的$route（路由），获取路由信息【path、query、params等等】
     $router： 整个应用只有一个$router（路由器），进行编程式导航进行路由跳转【push|replace】
 
@@ -277,33 +276,37 @@
 
     store/count.ts:
         import {defineStore} from 'pinia'
-        
         import { ref,computed } from 'vue'
+        <!-- 组合式API -->
         export default defineStore('count',()=>{
             let sum = ref(0)  // 相当state
-            let bigSum = computed(()=>{return sum.value*10})  // 相当getters
+            
             function increment(value:number){sum.value += value}  // 相当actions
+            
+            let bigSum = computed(()=>{return sum.value*10})  // 相当getters
+
             return {sum, increment, bigSum}
         })
     
-    import {storeToRefs} from 'pinia'  // 方便解构赋值,只会转换数据
-    import useCountStore from '@/store/count'
-    const countStore = useCountStore()
-    let {sum,bigSum} = storeToRefs(countStore)
+    import {storeToRefs} from 'pinia'  // 使用storeToRefs将state中的变量解构出来使用
+    import useCount from '@/store/count'
+    const countInfo = useCount()
+    let {sum,bigSum} = storeToRefs(countInfo)
 
 <!-- 修改数据 -->
-    countStore.sum = ''
-    countStore.$patch({sum: 666})
-    countStore.increment()
+    countInfo.sum = ''
+    countInfo.$patch({sum: 666})
+    countInfo.increment()
 
 <!-- $subscribe: (订阅) -->
     contStore.$subscribe((mutate, state)=>{})
 
 <!-- 
-    export default defineStore('count',{
+// 拿数据→存数据→取数据
+     const countStore = defineStore('count',{
         // 动作函数
         actions: {
-            increment(value){this.sum += value}  // countStore.increment()调用
+            increment(value){this.sum += value}  // countInfo.increment()调用
         },
         // 状态管理
         state(){
@@ -314,6 +317,7 @@
             // bigSum: state => state.sum * 10
         }
     })
+    export default countStore;
  -->
 
 ## Vue组件间通信方式 √
@@ -348,33 +352,6 @@
     $parent:
         <button @click="getParent($parent)"></button>  // 获取父组件实例
         $parent.data  // 获取数据
-            
-<!-- $attrs(祖←→孙) -->
-    没有声明接收的props参数会存到$attrs里
-    <Father :data='data'/>  <Child v-bind="$attrs"/>  <Son/>
-
-<!-- provide()/inject()(祖←→孙) -->
-    import {provide/inject} from 'vue'
-    provide('name', data)  // 父组件provide提供数据
-    let name = inject('name', default)  // 孙组件, default:默认值(子组件inject使用数据)
-
-<!-- mitt(全能) -->
-    npm i mitt
-
-    src/utils/emitter.ts:
-        import mitt from 'mitt'
-        export default mitt()
-
-    Child.vue:
-        import emitter from 'path'
-        emitter.on('event', (value)=>{})  // 绑定事件
-        onUnmounted(()=>{emitter.off('event')})  // 解绑事件
-
-    Child1.vue:
-        emitter.emit('event', data)  // 触发事件
-
-    emitter.all  // 获取所有事件
-    emitter.all.clear()  // 清除所有事件
 
 <!-- 插槽(父子结构通信) -->
     <默认插槽>
@@ -410,43 +387,17 @@
         子组件：
             <slot :data="data"></slot>  //回传数据
 
-#### v-model(父子组件通信)
-    <Father v-model='data'></Father>  // 原型
-    <Father
-        :modelValue='data'   // props
-        @update:modelValue='data=$event'  // 自定义事件名($event:触发自定义事件回传的值)
-    ></Father>  // v-model底层原理
-
-    <Child>:
-        <input type='text'
-            :value=modelValue  // 接收props
-            @input="emit('update:modelValue', (<HTMLInputElement>$event.target).value)"  // 触发自定义事件
-        >
-        defineProps(['modelValue'])
-        let emit = defineEmits(['update:modelValue'])
-    </Child>
-
-    同时传多个model:
-        <Father v-model:username='data' v-model:pasworrd='pas'></Father>  // 定义modelValue名称
-
 <!-- 
-    <input标签>:
-        <input type="text" v-model="data">  // 原型
-        <input type="text" :value='data' @input="data=$event.target.value">  // v-model底层原理
+    provide()/inject()(祖←→孙)
+        import {provide/inject} from 'vue'
+        provide('name', data)  // 父组件provide提供数据
+        let name = inject('name', default)  // 孙组件, default:默认值(子组件inject使用数据) 
+    
+    $attrs(祖←→孙)
+        没有声明接收的props参数会存到$attrs里
+        <Father :data='data'/>  <Child v-bind="$attrs"/>  <Son/>
+
 -->
-
-
-
-## vite.config.js(配置代理服务器)
-    server: {
-        proxy: {
-            '/api': {
-                target: 'http://jsonplaceholder.typicode.com',
-                changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/api/, '')  // 重写路径
-            }
-        }
-    }
 
 ## 样式
     封装的过渡与动画
@@ -473,5 +424,9 @@
     轮播图、
     分页器、
     面包屑、
-
-    菜单联动、放大镜、登录、注册、日历
+    菜单联动、
+    放大镜、
+    登录、
+    注册、
+    日历
+    搜索

@@ -49,11 +49,42 @@
 
 <!-- Vue -->
 ## Vue-Official
+    为 Vue 单文件组件提供了开箱即用的格式化功能
 
-## Element UI Snippets
-    标签补全
+<!-- git -->
+## GitHub Copilot
+    Ai 代码预生成
+
+## GitHub Copilot Chat
+    Ai 聊天框
+
+## GitHub Pull Requests
+    请求推送权限
 
 <!-- 扩展 -->
+## Live Sass Compiler 
+<!-- 将Sass转化为Css -->
+    配置：
+    // 定制样式
+    "liveSassCompile.settings.formats":[
+        // This is Default.
+        {
+            "format": "expanded",  //可定制的出口css样式（expanded展开格式、compact紧凑格式、compressed压缩格式、nested嵌套格式）
+            "extensionName": ".css",
+            "savePath": null  //为null，表示当前目录
+        }
+    ],
+    // 排除目录
+    "liveSassCompile.settings.excludeList": [
+        "/**/node_modules/**",
+        "/.vscode/**"
+    ],
+    //是否添加兼容前缀 例如：-webkit- -moz- ...等
+    "liveSassCompile.settings.autoprefix": [
+        "> 1%",
+        "last 2 versions"
+    ]
+
 ## 扩展
     ## px to rem & rpx & vw (cssrem)
         屏幕适配
