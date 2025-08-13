@@ -309,7 +309,7 @@
             increment(value){this.sum += value}  // countInfo.increment()调用
         },
         // 状态管理
-        state(){
+        state:()=>{
             return {sum:0}
         },
         getters:{
@@ -333,9 +333,6 @@
             }
         })
 
-        路由props:
-            方式：对象、布尔值、函数
-
 <!-- defineEmits自定义事件(子→父) -->
         <Child @send-data="getData"></Child>
         function getData(){}
@@ -343,13 +340,26 @@
         let emit = defineEmits(['send-data'])
         emit('send-data', data)
 
+<!-- v-model -->
+    <Child v-model="money" />
+
+    子组件：
+        defineProps(['money'])
+        defineEmits(['update:modelValue'])
+
 <!-- $refs(所有子组件实例)/$parent(获取父组件实例) -->
-    $refs:
+    $refs: 
         <Child ref='CHILD'/>
         <button @click="getAllChild($refs)"></button>  // 获取组件所有的子组件实例
-        $refs.CHILD.data  // 获取数据
+        let CHILD = ref()  // 获取子组件实例
+        CHILD.value.money  // 获取数据
 
     $parent:
+        <Child>
+            defineExpose({
+                money  // 对外暴露数据
+            })
+        <Child/>
         <button @click="getParent($parent)"></button>  // 获取父组件实例
         $parent.data  // 获取数据
 
@@ -365,10 +375,7 @@
     <具名插槽: v-slot:/#简写>
         父组件：
             <Child>
-                <template v-slot:center>
-                    <div>html结构</div>
-                </template>
-                <template #center>
+                <template v-slot:center/#center>
                     <div>html结构</div>
                 </template>
             </Child>
@@ -395,6 +402,8 @@
     
     $attrs(祖←→孙)
         没有声明接收的props参数会存到$attrs里
+        import {useAttrs} from 'vue'
+        let $attrs = useAttrs()
         <Father :data='data'/>  <Child v-bind="$attrs"/>  <Son/>
 
 -->

@@ -39,11 +39,10 @@
 
         git merge 主 副  //合并分支
 
-
-
     # 回退版本
         git log --oneline/--graph  //历史提交记录、历史记录何时出现分支合并
-        git reset --soft/--hard <hash>  //不带参数(还原)、回退版本、回退并删除之前提交的所有版本
+        git reset --soft  //不带参数(还原)、回退版本、
+        git reset  --hard <hash>  // 回退并删除之前提交的所有版本
 
     # 其他操作
         git blame <file>  //查看指定文件修改记录
