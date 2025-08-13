@@ -5,17 +5,16 @@
         __filename  // 当前文件的绝对路径
 
 ## npm常用配置
-        --save/-s  默认值,生产环境依赖  依赖写入package.json → dependencies
-        --save-dev/-D  开发环境依赖  依赖写入package.json → devDependencies
+        --save/-s  // 默认值,生产环境依赖 dependencies
+        --save-dev/-D  // 开发环境依赖 devDependencies
+        -g  // 全局安装
+        @versions  // 下载包以及指定包版本
 
     ## 常用指令
-        npm uninstall|remove|rm|r|un <name>  // 删除
-        npm update|up <name> --save  // 更新包,注: save为false.
-
         npm ls  // 查看所有已安装包
         npm list -g  // 查询全局包
         npm root -g  // 查看全局安装包位置
-        npm list <name>  // 查询某个模块版本号
+        pnpm list <name>  // 查询某个模块版本号
         npm view <name> versions  // 查看包的所有版本
         npm cache clean --force  // 清除缓存
 
@@ -30,18 +29,19 @@
         npm config delete https-proxy
 
 ## pnpm(高性能的npm，优化了npm和yarn的潜在bug)
-    npm i pnpm -g  // 全局安装
+    npm i pnpm
 
 <!-- 常用指令 -->
-    pnpm init -y  // 初始化package.json
-    pnpm install // 安装依赖
+    pnpm init  // 初始化package.json
+    pnpm install|i // 安装依赖
 
-    pnpm i <name>@versions  // 下载包以及指定包版本
+    pnpm add <name>  // 安装包
+    pnpm update|up <name>  // 更新包
+    pnpm uninstall|un|rm <name>  // 删除包
 
 <!-- 项目 -->
-    pnpm dev --open  // 运行项目并打开
+    pnpm dev  // 运行项目并打开
     pnpm build  // 项目打包
-
 
 <!-- 
     切换镜像

@@ -119,13 +119,6 @@
             "checkJs": false,  // 是否检查js是否符合语法规范，默认为false
             "alwaysStrict": false,  // 编译后的文件是否使用严格模式
             "noImplicitThis": flase,  // 是否允许不明确类型的this
-
-            // 用于设置模块名到基于baseUrl的路径映射
-            "paths": {
-                "@/*": [
-                    "src/*"
-                ]
-            },
         }
     }
         

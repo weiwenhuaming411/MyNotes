@@ -45,7 +45,14 @@
     打开默认/指定浏览器
 
 ## ESLint
-    js语法检测高亮
+    js语法检测
+
+## Error Lens
+    ESLint报错
+
+## prettier(Js代码格式化)
+
+## stylelint(csslint工具，格式化css代码)
 
 <!-- Vue -->
 ## Vue-Official
